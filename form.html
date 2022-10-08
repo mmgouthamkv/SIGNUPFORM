@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="C:\Users\m goutham\Desktop\ola\validation.js"></script>
+  </head>
+  <body>
+    <?php
+$con=mysqli_connect('localhost','root','','userdatabase');
+if(!$con)
+die('ErrorinConnection'.mysqli_error());
+$sel = mysqli_select_db($con, 'mydb');
+if(!$sel)
+echo"<br> Database not selected";
+$fname=$_POST['fname'];
+$email=$_POST['email'];
+$pass=$_POST['pass'];
+$dob=$_POST['date'];
+$gender=$_POST['gender'];
+$qry2="INSERT INTO userdata(fullname,email,password,dob,gender,timestamp) 
+VALUES('$fname','$email','$pass','$dob','$gender','CURRENT_TIMESTAMP()')"; 
+    $ins = mysqli_query($con, $qry2);
+    if(!$ins)
+        echo"<br>Login data Not inserted successfully";
+    
+    echo"<br><ahref='login.php'>Moveto Homepage</a>";
+    mysqli_close($con);
+    ?>
+
+    <form name="myform" method="post" onsubmit="return validatee()" action="db.php" id="myform">
+      <label>Full Name:</label><br />
+      <input type="text" name="fname" placeholder="Munaganuri Goutham" />
+      <h5 id="nameerror" style="color:red"></h5>
+      <label>E-Mail:</label>
+      <br>
+      <input type="text" name="email" placeholder="john@gmail.com" />
+      <h5 id="emailerror" style="color:red"></h5> 
+      
+      <label>Password (atleast 8 characters, atleast one special character,uppercase
+        letter and number):</label>
+        <br />
+      <input type="password" name="pass"/><!-- onblur="valid_pass()"/-->
+      <h5 id="passerror" style="color:red" ></h5>
+      <label>DOB:</label><br />
+      <input type="date" name="date" /><!--onblur="valid_date()"/-->
+      <h5 id="dateerror" style="color:red"></h5>
+      <br /><label>Gender:</label><br />
+      <input type="radio" value="Male" id="male" name="gender"><label for="male">Male</label> 
+      <input type="radio" value="Female" id="female" name="gender"><label for="female">Female</label>  
+      </div>
+      <h5 id="gendererror" style="color:red"></h5><br /><br />
+      <input type="submit"/>
+      <h5 id="msg" style="color:red"></h5>
+    </form>
+  </body>
+</html>
