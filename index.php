@@ -34,7 +34,7 @@ if(name.length==0){
     return false;
 }
 else if( /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/ .test(email)==false || email=="")
-{   window.alert("email format");
+{   window.alert("email format is not valid");
     return false;
 }
 else if( /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(pass)==false || pass==""){
